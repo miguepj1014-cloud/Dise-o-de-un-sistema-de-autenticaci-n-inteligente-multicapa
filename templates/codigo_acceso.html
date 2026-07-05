@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código de Acceso</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+        :root{
+            --gold:#D4AF37;
+            --gold-light:#F5D67A;
+        }
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
+            background:
+                radial-gradient(circle at top left,#2c2c2c 0%,#111 40%,#050505 100%);
+        }
+        body::before{
+            content:"";
+            position:absolute;
+            width:600px;
+            height:600px;
+            border-radius:50%;
+            background:rgba(212,175,55,.12);
+            filter:blur(70px);
+            top:-250px;
+            left:-150px;
+            animation:float1 10s infinite;
+        }
+        body::after{
+            content:"";
+            position:absolute;
+            width:450px;
+            height:450px;
+            border-radius:50%;
+            background:rgba(212,175,55,.08);
+            filter:blur(60px);
+            bottom:-150px;
+            right:-100px;
+            animation:float2 12s infinite;
+        }
+
+        @keyframes float1{
+            50%{
+                transform:translateY(40px);
+            }
+        }
+        @keyframes float2{
+            50%{
+                transform:translateY(-40px);
+            }
+        }
+        .container{
+            width:500px;
+            padding:45px;
+            background:rgba(255,255,255,.05);
+            backdrop-filter:blur(18px);
+            border:1px solid rgba(212,175,55,.25);
+            border-radius:30px;
+            text-align:center;
+            z-index:10;
+            box-shadow:
+                0 0 40px rgba(212,175,55,.15),
+                0 20px 60px rgba(0,0,0,.5);
+            animation:showUp 1s;
+        }
+        @keyframes showUp{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+        .key{
+            font-size:70px;
+            margin-bottom:15px;
+            animation:levitate 4s infinite;
+            filter:drop-shadow(
+                0 0 15px rgba(212,175,55,.5)
+            );
+        }
+        @keyframes levitate{
+            50%{
+                transform:translateY(-12px);
+            }
+        }
+        h2{
+            color:var(--gold);
+            font-size:32px;
+            margin-bottom:10px;
+        }
+        .subtitle{
+            color:#ddd;
+            margin-bottom:30px;
+        }
+        .info-box{
+            margin:20px 0;
+            padding:18px;
+            background:rgba(212,175,55,.08);
+            border:1px solid rgba(212,175,55,.25);
+            border-radius:15px;
+            color:#eee;
+            line-height:1.6;
+            font-size:14px;
+        }
+        .info-box strong{
+            color:var(--gold);
+            font-size:18px;
+        }
+        input{
+            width:100%;
+            padding:16px;
+            margin-bottom:18px;
+            background:rgba(255,255,255,.08);
+            border:1px solid rgba(212,175,55,.25);
+            border-radius:12px;
+            color:white;
+            outline:none;
+        }
+        input:focus{
+            border-color:var(--gold);
+            box-shadow:0 0 20px rgba(212,175,55,.35);
+        }
+        .buttons{
+            display:flex;
+            justify-content:center;
+            gap:15px;
+            margin-top:10px;
+        }
+        button{
+            padding:14px 24px;
+            border:none;
+            border-radius:12px;
+            cursor:pointer;
+            font-weight:bold;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    var(--gold-light)
+                );
+            color:#111;
+            transition:.3s;
+        }
+        button:hover{
+            transform:translateY(-4px) scale(1.03);
+            box-shadow:0 15px 35px rgba(212,175,55,.45);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="key">
+            🔢
+        </div>
+        <h2>
+            Código de Acceso
+        </h2>
+        <p class="subtitle">
+            Código de seguridad
+        </p>
+        <div class="info-box">
+            📱 Antes de continuar, escriba al número:
+            <br><br>
+            <strong>+593 963 330 788</strong>
+            <br><br>
+            para que se le habilite el envío
+            del código de acceso.
+            <br><br>
+            Una vez enviado el mensaje por WhatsApp,
+            presione <b>Enviar Código</b>.
+        </div>
+        <button onclick="generarCodigo()">
+            Enviar Código
+        </button>
+        <br><br>
+        <input
+            id="codigo"
+            placeholder="Ingrese el código recibido">
+
+        <div class="buttons">
+            <button onclick="verificarCodigo()">
+                Verificar
+            </button>
+
+            <button onclick="window.location.href='/recuperar'">
+                Volver
+            </button>
+        </div>
+    </div>
+    <script>
+       async function generarCodigo(){
+            try{
+                const res = await fetch("/generar_codigo",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                    }
+                });
+                const data = await res.json();
+                console.log(data);
+                if(!data.success){
+                    alert(data.message);
+                    return;
+                }
+                alert("Código enviado correctamente");
+
+            }catch(e){
+                console.error(e);
+                alert("Error real en conexión");
+            }
+        }
+        async function verificarCodigo(){
+            const codigo =
+                document.getElementById("codigo").value;
+
+            const res = await fetch(
+                "/verificar_codigo",
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
+                        codigo
+                    })
+                }
+            );
+            const data = await res.json();
+            if(data.success){
+                alert("Acceso concedido");
+                window.location.href="/perfil";
+            }else{
+                alert(data.message);
+            }
+        }
+    </script>
+</body>
+</html>

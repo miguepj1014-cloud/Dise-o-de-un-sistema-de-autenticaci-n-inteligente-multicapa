@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Autenticador</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+:root{
+    --gold:#D4AF37;
+    --gold-light:#F5D67A;
+    --black:#050505;
+    --dark:#11151d;
+}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top left,#353535 0%,#111 40%,#050505 100%);
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(212,175,55,.12);
+    filter:blur(80px);
+    top:-250px;
+    left:-150px;
+    animation:float1 10s infinite ease-in-out;
+}
+body::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(212,175,55,.10);
+    filter:blur(80px);
+    bottom:-200px;
+    right:-150px;
+    animation:float2 12s infinite ease-in-out;
+}
+@keyframes float1{
+0%,100%{ transform:translateY(0);}
+50%{ transform:translateY(50px);}
+}
+@keyframes float2{
+0%,100%{ transform:translateY(0);}
+50%{ transform:translateY(-50px);}
+}
+.container{
+    width:500px;
+    padding:40px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border-radius:25px;
+    border:1px solid rgba(212,175,55,.25);
+    box-shadow: 0 0 40px rgba(212,175,55,.15),
+                0 20px 60px rgba(0,0,0,.6);
+    text-align:center;
+    z-index:5;
+}
+h2{
+    color:var(--gold);
+    margin-bottom:10px;
+}
+p{
+    color:#ddd;
+}
+.btn-main{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:12px;
+    background:var(--gold);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+.btn-main:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px var(--gold);
+}
+.grid{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+.opcion{
+    padding:20px;
+    border-radius:15px;
+    cursor:pointer;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(212,175,55,.25);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    transition:.3s;
+}
+.opcion:hover{
+    transform:translateY(-5px) scale(1.05);
+    border-color:var(--gold);
+    box-shadow:0 10px 25px rgba(212,175,55,.35);
+}
+#msg{
+    margin-top:20px;
+    color:#ff6b6b;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>🔐 Autenticador</h2>
+<p>Presiona el botón cuando tengas tu código del teléfono</p>
+<button class="btn-main" onclick="cargar()">Obtener códigos</button>
+<div id="botones" class="grid"></div>
+<p id="msg"></p>
+</div>
+<script>
+let codigoCorrecto = null;
+const URL_API = "http://192.168.0.102:5000/obtener_codigo";
+function cargar() {
+    fetch(URL_API)
+    .then(r => r.json())
+    .then(data => {
+        codigoCorrecto = parseInt(data.codigo);
+        if (!codigoCorrecto) {
+            document.getElementById("msg").innerText =
+            "No hay código activo todavía.";
+            return;
+        }
+        let falso1, falso2;
+        do {
+            falso1 = Math.floor(Math.random() * 90) + 10;
+        } while (falso1 === codigoCorrecto);
+        do {
+            falso2 = Math.floor(Math.random() * 90) + 10;
+        } while (falso2 === codigoCorrecto || falso2 === falso1);
+        let lista = [codigoCorrecto, falso1, falso2];
+        lista.sort(() => Math.random() - 0.5);
+        let cont = document.getElementById("botones");
+        cont.innerHTML = "";
+        lista.forEach(num => {
+            let b = document.createElement("div");
+            b.className = "opcion";
+            b.innerText = num;
+            b.onclick = () => {
+                if (num === codigoCorrecto) {
+                    window.location.href = "/perfil";
+                } else {
+                    document.getElementById("msg").innerText =
+                    "❌ Código incorrecto";
+                }
+
+            };
+            cont.appendChild(b);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        document.getElementById("msg").innerText =
+        "Error conectando con el servidor";
+    });
+
+}
+</script>
+</body>
+</html>

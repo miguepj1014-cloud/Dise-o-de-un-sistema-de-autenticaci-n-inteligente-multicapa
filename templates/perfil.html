@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil UNACH</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+    background:
+    radial-gradient(circle at top left,#2c2c2c 0%,#111 40%,#050505 100%);
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(212,175,55,.15);
+    filter:blur(60px);
+    top:-200px;
+    left:-150px;
+}
+body::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(212,175,55,.10);
+    filter:blur(60px);
+    bottom:-150px;
+    right:-100px;
+}
+.container{
+    width:700px;
+    padding:40px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:30px;
+    box-shadow:0 0 40px rgba(212,175,55,.15),
+    0 20px 60px rgba(0,0,0,.5);
+    z-index:10;
+}
+.profile{
+    text-align:center;
+    margin-bottom:30px;
+}
+.profile img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #D4AF37;
+    box-shadow:
+    0 0 20px rgba(212,175,55,.4);
+}
+.profile h2{
+    color:#D4AF37;
+    margin-top:15px;
+    font-size:32px;
+    letter-spacing:2px;
+}
+.profile p{
+    color:#cfcfcf;
+}
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+.group{
+    display:flex;
+    flex-direction:column;
+}
+.group label{
+    color:#D4AF37;
+    margin-bottom:8px;
+    font-size:14px;
+}
+.group input{
+    width:100%;
+    padding:15px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:12px;
+    color:white;
+    outline:none;
+    transition:.3s;
+}
+.group input:focus{
+    border-color:#D4AF37;
+    box-shadow:0 0 20px rgba(212,175,55,.35);
+}
+.buttons{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+button{
+    width:180px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:
+    linear-gradient(
+        135deg,
+        #D4AF37,
+        #F5D67A
+    );
+    color:#111;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+button:hover{
+    transform:translateY(-4px)
+    scale(1.03);
+    box-shadow:0 10px 25px rgba(212,175,55,.4);
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="profile">
+        <img src="https://i.pinimg.com/736x/06/4d/54/064d548a602fec00a9363089d9d846e4.jpg" alt="Perfil">
+        <h2 id="username"></h2>
+        <p>Universidad Nacional de Chimborazo</p>
+    </div>
+    <div class="grid">
+        <div class="group">
+            <label>Usuario</label>
+            <input id="u">
+        </div>
+        <div class="group">
+            <label>Contraseña</label>
+            <input id="p" type="password">
+        </div>
+        <div class="group">
+            <label>Email</label>
+            <input id="e">
+        </div>
+        <div class="group">
+            <label>Teléfono</label>
+            <input id="t">
+        </div>
+    </div>
+    </button>
+    <div class="buttons">
+        <button onclick="guardarCambios()">
+            Guardar Cambios
+        </button>
+            <button onclick="window.location.href='/conoce_sistema'">
+        Conoce nuestro sistema
+    </div>
+</div>
+<script>
+async function cargarPerfil(){
+    const res = await fetch("/datos_perfil");
+    const data = await res.json();
+    console.log("DATA:", data);
+    if(data.error){
+        alert("Error cargando perfil: " + data.error);
+        return;
+    }
+    document.getElementById("username").textContent = data.username;
+    document.getElementById("u").value = data.username;
+    document.getElementById("p").value = data.password;
+    document.getElementById("e").value = data.email;
+    document.getElementById("t").value = data.telefono;
+}
+window.onload = cargarPerfil;
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar Acceso</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+:root{
+    --gold:#D4AF37;
+    --gold-light:#F5D67A;
+}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at top left,#2c2c2c 0%,#111 40%,#050505 100%);
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(212,175,55,.12);
+    filter:blur(60px);
+    top:-250px;
+    left:-150px;
+}
+body::after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:rgba(212,175,55,.08);
+    filter:blur(60px);
+    bottom:-150px;
+    right:-100px;
+}
+.container{
+    width:900px;
+    padding:40px;
+    text-align:center;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:30px;
+    box-shadow:0 0 40px rgba(212,175,55,.15),
+    0 20px 60px rgba(0,0,0,.5);
+    z-index:2;
+}
+.logo{
+    width:110px;
+    margin-bottom:20px;
+}
+h1{
+    color:var(--gold);
+    margin-bottom:10px;
+}
+.sub{
+    color:#ddd;
+    margin-bottom:40px;
+}
+.cards{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.card{
+    width:220px;
+    padding:25px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(212,175,55,.20);
+    border-radius:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:
+    0 0 25px rgba(212,175,55,.25);
+}
+.icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+.card h2{
+    color:var(--gold);
+    margin-bottom:10px;
+    font-size:22px;
+}
+.card p{
+    color:#ddd;
+    font-size:14px;
+}
+.back{
+    margin-top:35px;
+    padding:14px 30px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:
+    linear-gradient(
+        135deg,
+        var(--gold),
+        var(--gold-light)
+    );
+    color:#111;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <img src="https://fundacionkawsayta.org/wp-content/uploads/2022/04/UNACH-1024x1017.png"
+         class="logo">
+    <h1>Recuperar Acceso</h1>
+    <p class="sub">
+        Seleccione el método que desea utilizar
+    </p>
+    <div class="cards">
+        <div class="card"
+             onclick="window.location.href='/llave_maestra'">
+            <div class="icon">🔑</div>
+            <h2>Llave Maestra</h2>
+            <p>
+                Recuperación mediante la llave maestra
+                generada al registrarse.
+            </p>
+        </div>
+        <div class="card"
+             onclick="window.location.href='/palabra_seguridad'">
+            <div class="icon">🛡️</div>
+            <h2>Palabra de Seguridad</h2>
+            <p>
+                Verificación utilizando la categoría
+                y palabra elegida.
+            </p>
+        </div>
+        <div class="card"
+             onclick="window.location.href='/autenticador'">
+            <div class="icon">📱</div>
+            <h2>Autenticador</h2>
+            <p>
+                Validación mediante código
+                del autenticador.
+            </p>
+        </div>
+        <div class="card"
+            onclick="window.location.href='/codigo_acceso'">
+            <div class="icon">🔢</div>
+            <h2>Código de Acceso</h2>
+            <p>
+                Ingrese con un código temporal
+                enviado a su correo & teléfono.
+            </p>
+        </div>
+    </div>
+    <button class="back"
+            onclick="window.location.href='/'">
+        Volver al Login
+    </button>
+</div>
+</body>
+</html>

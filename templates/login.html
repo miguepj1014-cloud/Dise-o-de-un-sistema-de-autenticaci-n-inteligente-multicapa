@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNACH Login</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+:root{
+    --gold:#D4AF37;
+    --gold-light:#F5D67A;
+    --black:#0B0D11;
+    --dark:#161A22;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top left,#2c2c2c 0%,#111 40%,#050505 100%);
+    position:relative;
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    background:rgba(212,175,55,.15);
+    filter:blur(60px);
+    top:-250px;
+    left:-150px;
+    animation:float1 10s ease-in-out infinite;
+}
+body::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(212,175,55,.10);
+    filter:blur(60px);
+    bottom:-150px;
+    right:-100px;
+    animation:float2 12s ease-in-out infinite;
+}
+.bg1{
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(212,175,55,.08);
+    filter:blur(40px);
+    top:50%;
+    left:10%;
+}
+.bg2{
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(212,175,55,.08);
+    filter:blur(40px);
+    right:20%;
+    top:15%;
+}
+@keyframes float1{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(40px);
+    }
+}
+@keyframes float2{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-50px);
+    }
+}
+.container{
+    width:950px;
+    height:520px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(212,175,55,.2);
+    border-radius:30px;
+    box-shadow:
+    0 0 40px rgba(212,175,55,.15),
+    0 20px 60px rgba(0,0,0,.5);
+    z-index:10;
+    animation:showUp 1s ease;
+}
+@keyframes showUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.left{
+    width:45%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.left img{
+    width:320px;
+    filter:
+    drop-shadow(0 0 30px rgba(212,175,55,.25));
+    animation:levitate 6s ease-in-out infinite;
+}
+@keyframes levitate{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-20px);
+    }
+}
+.right{
+    width:40%;
+    text-align:center;
+}
+
+.logo{
+    width:120px;
+    margin-bottom:15px;
+    animation:pulse 4s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.05);
+    }
+}
+h1{
+    color:var(--gold);
+    font-size:55px;
+    letter-spacing:4px;
+    margin-bottom:30px;
+    text-shadow:0 0 15px rgba(212,175,55,.4);
+}
+.input-group{
+    margin-bottom:18px;
+}
+.input-group input{
+    width:100%;
+    padding:16px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:12px;
+    color:white;
+    outline:none;
+    transition:.4s;
+}
+.input-group input::placeholder{
+    color:#d7d7d7;
+}
+.input-group input:focus{
+    border-color:var(--gold);
+    box-shadow:
+    0 0 20px rgba(212,175,55,.35);
+    transform:translateY(-2px);
+}
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:25px;
+}
+button{
+    width:140px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:
+    linear-gradient(
+    135deg,
+    var(--gold),
+    var(--gold-light)
+    );
+    color:#111;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:
+    0 10px 25px rgba(212,175,55,.25);
+}
+button:hover{
+    transform:
+    translateY(-5px)
+    scale(1.03);
+    box-shadow:
+    0 15px 35px rgba(212,175,55,.45);
+}
+@media(max-width:900px){
+.container{
+    width:700px;
+    height:430px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(212,175,55,.2);
+    border-radius:30px;
+    box-shadow:
+    0 0 40px rgba(212,175,55,.15),
+    0 20px 60px rgba(0,0,0,.5);
+    z-index:10;
+    animation:showUp 1s ease;
+}
+.left{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.left img{
+    width:300px;
+    filter:drop-shadow(0 0 30px rgba(212,175,55,.25));
+    animation:levitate 6s ease-in-out infinite;
+}
+}
+</style>
+</head>
+<body>
+<div class="bg1"></div>
+<div class="bg2"></div>
+<div class="container">
+    <!-- LADO IZQUIERDO -->
+    <div class="left">
+        <img src="https://fundacionkawsayta.org/wp-content/uploads/2022/04/UNACH-1024x1017.png">
+    </div>
+    <!-- LADO DERECHO -->
+    <div class="right">
+        <!-- Logo UNACH -->
+        <img src="https://online.unach.edu.ec/pluginfile.php/1/local_edwiserpagebuilder/media/326122770/logo%20hd_Mesa%20de%20trabajo%201.png" class="logo" alt="UNACH">
+        <h1>UNACH</h1>
+        <div class="input-group">
+            <input
+            id="username"
+            type="text"
+            placeholder="Usuario">
+        </div>
+        <div class="input-group">
+            <input
+            id="password"
+            type="password"
+            placeholder="Contraseña">
+        </div>
+        <div class="buttons">
+            <button onclick="window.location.href='/registro'">
+                Registrar
+            </button>
+            <button onclick="enviarLogin()">
+                Ingresar
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+async function enviarLogin(){
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    try{
+        const res = await fetch("/login", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            credentials:"include",
+            body:JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+        const data = await res.json();
+        if(data.redirect){
+            window.location.href = data.redirect;
+            return;
+        }
+        if(data.success){
+            window.location.href="/codigo_acceso";
+            return;
+        }
+        alert(data.message || "Usuario o contraseña incorrectos");
+    }catch(error){
+        console.error(error);
+        alert("Error al conectar con el servidor");
+    }
+}
+</script>
+</body>
+</html>

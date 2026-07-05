@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conoce nuestro sistema</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+:root{
+--gold:#D4AF37;
+--gold-light:#F5D67A;
+}
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+radial-gradient(circle at top left,#333,#111 45%,#050505);
+overflow:auto;
+padding:30px;
+color:white;
+}
+body::before{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+border-radius:50%;
+background:rgba(212,175,55,.12);
+filter:blur(80px);
+top:-200px;
+left:-200px;
+animation:float 10s infinite;
+}
+body::after{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+border-radius:50%;
+background:
+rgba(212,175,55,.08);
+filter:blur(80px);
+bottom:-200px;
+right:-200px;
+animation:float2 12s infinite;
+}
+@keyframes float{
+50%{
+transform:translateY(50px);
+}
+}
+@keyframes float2{
+50%{
+transform:translateY(-50px);
+}
+}
+.container{
+width:950px;
+padding:40px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:
+1px solid rgba(212,175,55,.25);
+border-radius:30px;
+box-shadow:0 0 50px rgba(212,175,55,.15),
+0 30px 70px rgba(0,0,0,.6);
+z-index:5;
+animation:show .8s ease;
+}
+@keyframes show{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.logo{
+width:110px;
+filter:
+drop-shadow(
+0 0 20px rgba(212,175,55,.5)
+);
+}
+h1{
+color:var(--gold);
+font-size:35px;
+margin:15px;
+text-align:center;
+}
+.sub{
+text-align:center;
+color:#ddd;
+margin-bottom:30px;
+}
+.card{
+background:rgba(212,175,55,.08);
+border:1px solid rgba(212,175,55,.25);
+padding:25px;
+border-radius:20px;
+margin-bottom:20px;
+transition:.3s;
+}
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(212,175,55,.25);
+}
+h2{
+color:var(--gold);
+margin-bottom:10px;
+}
+p,li{
+color:#ddd;
+line-height:1.7;
+}
+ul{
+margin-left:25px;
+}
+.icon{
+font-size:45px;
+margin-bottom:10px;
+}
+button{
+margin-top:20px;
+padding:14px 30px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+background:
+linear-gradient(
+135deg,
+var(--gold),
+var(--gold-light)
+);
+color:#111;
+transition:.3s;
+}
+button:hover{
+transform:
+translateY(-4px);
+box-shadow:
+0 15px 30px rgba(212,175,55,.4);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<center>
+<img
+src="https://fundacionkawsayta.org/wp-content/uploads/2022/04/UNACH-1024x1017.png"
+class="logo">
+</center>
+<h1>
+Conoce nuestro sistema
+</h1>
+<p class="sub">
+Plataforma de autenticación y protección de usuarios
+</p>
+<div class="card">
+<div class="icon">
+🔐
+</div>
+<h2>
+Sistema de seguridad
+</h2>
+<p>
+Nuestro sistema fue creado para proteger cuentas mediante
+validación de identidad, contraseñas seguras y métodos
+de recuperación.
+</p>
+</div>
+<div class="card">
+<div class="icon">
+👤
+</div>
+<h2>
+Registro de usuarios
+</h2>
+<p>
+Al crear una cuenta se almacena información necesaria para
+identificar al usuario y permitir un acceso personalizado.
+</p>
+<ul>
+<li>Usuario</li>
+<li>Correo electrónico</li>
+<li>Teléfono</li>
+<li>Categoría de seguridad</li>
+<li>Palabra secreta</li>
+</ul>
+</div>
+<div class="card">
+<div class="icon">
+🛡️
+</div>
+<h2>
+Protección de contraseña
+</h2>
+<p>
+Las contraseñas no se guardan directamente.
+El sistema utiliza protección mediante hash para evitar
+que puedan ser recuperadas por terceros.
+</p>
+</div>
+<div class="card">
+<div class="icon">
+🔑
+</div>
+<h2>
+Recuperación de acceso
+</h2>
+<p>
+Si el usuario pierde el acceso puede utilizar diferentes
+métodos de seguridad:
+</p>
+<ul>
+<li>Llave maestra</li>
+<li>Palabra de seguridad</li>
+<li>Sistema de verificación</li>
+</ul>
+</div>
+<div class="card">
+<div class="icon">
+📱
+</div>
+<h2>
+Verificación avanzada
+</h2>
+<p>
+El sistema puede enviar códigos de seguridad mediante
+correo electrónico o mensajería para confirmar la identidad.
+</p>
+</div>
+<div class="card">
+<div class="icon">
+⚙️
+</div>
+<h2>
+Tecnologías utilizadas
+</h2>
+<p>
+El proyecto utiliza:
+</p>
+<ul>
+<li>Python + Flask</li>
+<li>SQLite</li>
+<li>HTML, CSS y JavaScript</li>
+<li>Sistemas de autenticación segura</li>
+</ul>
+</div>
+<center>
+<button onclick="window.location.href='/perfil'">
+Volver al perfil
+</button>
+</center>
+</div>
+</body>
+</html>

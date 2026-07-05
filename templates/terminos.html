@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Términos y Condiciones</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+:root{
+    --gold:#D4AF37;
+    --gold-light:#F5D67A;
+}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top left,#353535,#111 45%,#050505);
+    color:white;
+    padding:30px;
+    overflow:auto;
+}
+body::before{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+border-radius:50%;
+background:rgba(212,175,55,.12);
+filter:blur(80px);
+top:-250px;
+left:-200px;
+animation:float 10s infinite;
+}
+body::after{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+border-radius:50%;
+background:
+rgba(212,175,55,.08);
+filter:blur(80px);
+bottom:-200px;
+right:-200px;
+animation:float2 12s infinite;
+}
+@keyframes float{
+50%{
+transform:translateY(50px);
+}
+}
+@keyframes float2{
+50%{
+transform:translateY(-50px);
+}
+}
+.container{
+width:900px;
+padding:40px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:
+1px solid rgba(212,175,55,.25);
+border-radius:30px;
+box-shadow:0 0 50px rgba(212,175,55,.15),
+0 30px 80px rgba(0,0,0,.6);
+z-index:5;
+animation:show .8s ease;
+}
+@keyframes show{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.logo{
+width:100px;
+filter:
+drop-shadow(
+0 0 20px rgba(212,175,55,.5)
+);
+}
+h1{
+color:var(--gold);
+font-size:34px;
+margin-top:15px;
+text-align:center;
+}
+.fecha{
+text-align:center;
+color:#ddd;
+margin:15px;
+}
+.contenido{
+margin-top:25px;
+max-height:600px;
+overflow-y:auto;
+padding:20px;
+text-align:left;
+}
+.contenido::-webkit-scrollbar{
+width:8px;
+}
+.contenido::-webkit-scrollbar-thumb{
+background:var(--gold);
+border-radius:10px;
+}
+h2{
+color:var(--gold);
+margin-top:25px;
+margin-bottom:10px;
+}
+p,li{
+color:#e5e5e5;
+line-height:1.7;
+}
+ul{
+margin-left:25px;
+}
+.box{
+background:
+rgba(212,175,55,.08);
+border:1px solid rgba(212,175,55,.25);
+border-radius:15px;
+padding:20px;
+margin-top:20px;
+}
+button{
+margin-top:30px;
+padding:14px 30px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+background:
+linear-gradient(
+135deg,
+var(--gold),
+var(--gold-light)
+);
+color:#111;
+transition:.3s;
+}
+button:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 30px rgba(212,175,55,.35);
+
+}
+</style>
+</head>
+<body>
+<div class="container">
+<center>
+<img
+src="https://fundacionkawsayta.org/wp-content/uploads/2022/04/UNACH-1024x1017.png"
+class="logo">
+</center>
+<h1>
+Términos y Condiciones de Uso
+</h1>
+<div class="fecha">
+Última actualización: 18 de junio de 2026
+</div>
+<div class="contenido">
+<div class="box">
+<p>
+Al crear una cuenta en nuestra plataforma, el usuario acepta los siguientes términos y condiciones relacionados con el uso del sistema, seguridad y tratamiento de información personal.
+</p>
+</div>
+<h2>1. Registro de usuario</h2>
+<p>
+Para crear una cuenta, el sistema puede solicitar información necesaria para brindar los servicios de autenticación y seguridad, incluyendo:
+</p>
+<ul>
+<li>Nombre de usuario.</li>
+<li>Contraseña.</li>
+<li>Correo electrónico.</li>
+<li>Número telefónico.</li>
+<li>Categoría y palabra de seguridad elegida.</li>
+<li>Información técnica del dispositivo utilizado.</li>
+</ul>
+<h2>2. Uso de la información recopilada</h2>
+<p>
+Los datos registrados serán utilizados únicamente para:
+</p>
+<ul>
+<li>Crear y administrar la cuenta.</li>
+<li>Permitir inicio de sesión seguro.</li>
+<li>Verificar identidad.</li>
+<li>Enviar códigos mediante correo o WhatsApp.</li>
+<li>Detectar accesos sospechosos.</li>
+<li>Mejorar la seguridad.</li>
+</ul>
+<h2>3. Datos técnicos de seguridad</h2>
+<p>
+El sistema puede almacenar información como:
+</p>
+<ul>
+<li>Dirección IP.</li>
+<li>Ubicación aproximada.</li>
+<li>Fecha y hora de registro.</li>
+<li>Sistema operativo o dispositivo.</li>
+</ul>
+<h2>4. Protección de contraseñas</h2>
+<p>
+Las contraseñas no se almacenan en texto visible.
+El sistema utiliza métodos seguros de protección mediante hash.
+</p>
+<h2>5. Llaves y códigos de seguridad</h2>
+<p>
+El sistema puede generar códigos temporales y llaves maestras para recuperación de cuenta.
+El usuario no debe compartir estos códigos.
+</p>
+<h2>6. Privacidad de datos</h2>
+<p>
+La información personal no será vendida ni compartida con terceros con fines comerciales.
+Solo será utilizada para funcionamiento, seguridad y recuperación.
+</p>
+<h2>7. Servicios externos</h2>
+<p>
+El sistema puede utilizar servicios externos de correo electrónico y mensajería para entregar códigos de seguridad.
+</p>
+<h2>8. Responsabilidad del usuario</h2>
+<ul>
+<li>Mantener segura su contraseña.</li>
+<li>No compartir códigos.</li>
+<li>Informar accesos sospechosos.</li>
+<li>Usar correctamente la plataforma.</li>
+</ul>
+<h2>9. Seguridad del sistema</h2>
+<p>
+Se aplican medidas como:
+</p>
+<ul>
+<li>Verificación por códigos.</li>
+<li>Validación de contraseña.</li>
+<li>Detección de dispositivos.</li>
+<li>Recuperación segura.</li>
+</ul>
+<h2>10. Aceptación</h2>
+<p>
+Al registrarse, el usuario confirma que ha leído y acepta estos términos y condiciones.
+Si no está de acuerdo, no debe crear una cuenta.
+</p>
+<center>
+<button onclick="window.location.href='/'">
+Volver
+</button>
+</center>
+</div>
+</div>
+</body>
+</html>

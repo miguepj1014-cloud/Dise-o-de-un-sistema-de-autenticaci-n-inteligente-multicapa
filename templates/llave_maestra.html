@@ -1,0 +1,244 @@
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+:root{
+    --gold:#D4AF37;
+    --gold-light:#F5D67A;
+    --black:#0B0D11;
+    --dark:#161A22;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:
+    radial-gradient(circle at top left,#2c2c2c 0%,#111 40%,#050505 100%);
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(212,175,55,.12);
+    filter:blur(70px);
+    top:-250px;
+    left:-150px;
+    animation:float1 10s ease-in-out infinite;
+}
+body::after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:rgba(212,175,55,.08);
+    filter:blur(60px);
+    bottom:-150px;
+    right:-100px;
+    animation:float2 12s ease-in-out infinite;
+}
+@keyframes float1{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(40px);}
+}
+@keyframes float2{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-40px);}
+}
+.container{
+    width:500px;
+    padding:45px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:30px;
+    text-align:center;
+    z-index:10;
+    box-shadow:0 0 40px rgba(212,175,55,.15),
+    0 20px 60px rgba(0,0,0,.5);
+    animation:showUp 1s ease;
+}
+@keyframes showUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+.key{
+    font-size:70px;
+    margin-bottom:15px;
+    animation:levitate 4s ease-in-out infinite;
+    filter:drop-shadow(0 0 15px rgba(212,175,55,.5)
+    );
+}
+@keyframes levitate{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+h2{
+    color:var(--gold);
+    font-size:32px;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+.subtitle{
+    color:#d5d5d5;
+    margin-bottom:30px;
+    line-height:1.5;
+}
+.info-box{
+    margin:20px 0;
+    padding:18px;
+    background:rgba(212,175,55,.08);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:15px;
+    color:#f5f5f5;
+    line-height:1.6;
+    font-size:14px;
+}
+.info-box strong{
+    color:#D4AF37;
+    font-size:18px;
+}
+input{
+    width:100%;
+    padding:16px;
+    margin-bottom:18px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:12px;
+    color:white;
+    outline:none;
+    transition:.3s;
+}
+input::placeholder{
+    color:#d7d7d7;
+}
+input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 20px rgba(212,175,55,.35);
+    transform:translateY(-2px);
+}
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:10px;
+}
+button{
+    padding:14px 24px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+    transition:.35s;
+    background:
+    linear-gradient(
+    135deg,
+    var(--gold),
+    var(--gold-light)
+    );
+    color:#111;
+    box-shadow:0 10px 25px rgba(212,175,55,.25);
+}
+button:hover{
+    transform:
+    translateY(-4px)
+    scale(1.03);
+    box-shadow:
+    0 15px 35px rgba(212,175,55,.45);
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="key">🔑</div>
+    <h2>Llave Maestra</h2>
+    <p class="subtitle">
+        Se enviará una llave maestra a tu correo
+        y WhatsApp registrados.
+    </p>
+    <div class="info-box">
+        📱 Antes de continuar, escriba al número:
+        <br><br>
+        <strong>+593 963 330 788</strong>
+        <br><br>
+        para que se le habilite el envío de la llave maestra.
+        Una vez que haya enviado el mensaje por WhatsApp,
+        presione <b>Enviar Llave</b>.
+    </div>
+    <button onclick="enviarLlave()">
+        Enviar Llave
+    </button>
+    <br><br>
+    <input
+    id="llave"
+    placeholder="Ingrese la llave recibida">
+    <div class="buttons">
+        <button onclick="verificarLlave()">
+            Verificar
+        </button>
+        <button onclick="window.location.href='/recuperar'">
+            Volver
+        </button>
+    </div>
+</div>
+    </div>
+</div>
+<script>
+async function enviarLlave(){
+    const res = await fetch(
+        "/enviar_llave",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+    );
+    const data = await res.json();
+    alert(data.message);
+}
+async function verificarLlave(){
+    const llave =
+        document.getElementById("llave").value;
+
+    const res = await fetch(
+        "/verificar_llave",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                llave
+            })
+        }
+    );
+    const data = await res.json();
+    if(data.success){
+        alert("Acceso concedido");
+        window.location.href = "/perfil";
+    }else{
+        alert(data.message);
+    }
+}
+</script>
+</body>
+</html>

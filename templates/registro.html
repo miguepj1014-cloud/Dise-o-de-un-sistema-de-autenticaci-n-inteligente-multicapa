@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro UNACH</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+    background:
+    radial-gradient(circle at top left,#2c2c2c 0%,#111 40%,#050505 100%);
+}
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(212,175,55,.15);
+    filter:blur(60px);
+    top:-200px;
+    left:-150px;
+}
+body::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(212,175,55,.10);
+    filter:blur(60px);
+    bottom:-150px;
+    right:-100px;
+}
+.container{
+    width:550px;
+    padding:50px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:30px;
+    text-align:center;
+    box-shadow: 0 0 40px rgba(212,175,55,.15),
+    0 20px 60px rgba(0,0,0,.5);
+    z-index:10;
+}
+.logo{
+    width:130px;
+    margin-bottom:15px;
+    filter:
+    drop-shadow(0 0 15px rgba(212,175,55,.5))
+    drop-shadow(0 0 40px rgba(212,175,55,.3));
+}
+h1{
+    color:#D4AF37;
+    font-size:50px;
+    font-weight:800;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+.input-group{
+    margin-bottom:15px;
+}
+.input-group input,
+.input-group select{
+    width:100%;
+    padding:15px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:12px;
+    color:white;
+    outline:none;
+    font-size:15px;
+    transition:.3s;
+}
+.input-group input::placeholder{
+    color:#d7d7d7;
+}
+.input-group input:focus,
+.input-group select:focus{
+    border-color:#D4AF37;
+    box-shadow:0 0 20px rgba(212,175,55,.35);
+}
+select{
+    color:white;
+}
+select option{
+    background:#111;
+    color:white;
+}
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+button{
+    width:140px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:
+    linear-gradient(
+        135deg,
+        #D4AF37,
+        #F5D67A
+    );
+    color:#111;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+button:hover{
+    transform:
+    translateY(-4px)
+    scale(1.03);
+    box-shadow:0 10px 25px rgba(212,175,55,.4);
+}
+.terminos{
+    margin-top:20px;
+    color:#ddd;
+    font-size:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+}
+.terminos input{
+    width:18px;
+    height:18px;
+    accent-color:#D4AF37;
+}
+.terminos a{
+    color:#D4AF37;
+    text-decoration:none;
+    font-weight:bold;
+}
+.terminos a:hover{
+    text-decoration:underline;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <img src="https://fundacionkawsayta.org/wp-content/uploads/2022/04/UNACH-1024x1017.png" class="logo" alt="UNACH">
+    <h1>REGISTRAR</h1>
+    <div class="input-group">
+        <input type="text" id="username" placeholder="Usuario">
+    </div>
+    <div class="input-group">
+        <input type="email" id="gmail" placeholder="Correo Gmail">
+    </div>
+    <div class="input-group">
+        <input type="tel" id="telefono" placeholder="Teléfono">
+    </div>
+    <div class="input-group">
+    <select id="categoria" onchange="cargar()">
+        <option value="">Seleccione una categoría</option>
+        <option value="A">Colores</option>
+        <option value="B">Animales</option>
+        <option value="C">Comida</option>
+    </select>
+</div>
+<div class="input-group">
+    <select id="palabra">
+        <option value="">Seleccione una palabra</option>
+    </select>
+</div>
+    <div class="input-group">
+        <input type="password" id="password" placeholder="Contraseña">
+    </div>
+    <div class="terminos">
+        <input
+        type="checkbox"
+        id="acepto">
+        <label for="acepto">
+            Acepto los 
+            <a href="/terminos" target="_blank">
+                Términos y Condiciones
+            </a>
+        </label>
+    </div>
+    <div class="buttons">
+        <button onclick="window.location.href='/'">
+            Volver
+        </button>
+        <button onclick="registrar()">
+            Registrar
+        </button>
+    </div>
+</div>
+<script>
+function cargar(){
+    let cat = document.getElementById("categoria").value;
+    let select = document.getElementById("palabra");
+    let datos = {
+        A:["vino","malva","oliva","caoba","granate","aguamarina","maiz","añil","fandango","turquesa"],
+        B:["krill","urraca","Star-noseDmole","Aye aye","tarsius tarsier","Uakarí","Macrocelidea","MYxini","Bata eniceps Rex","Kiwa hirsuta"],
+        C:["escamoles","criadillas","Pizzushi","tequeños","Cachapas","schnitzel","Saverbraten","Eisbein","spatzle"]
+    };
+    select.innerHTML =
+        "<option value=''>Seleccione una palabra</option>";
+    if(datos[cat]){
+        datos[cat].forEach(item=>{
+            let op = document.createElement("option");
+            op.value = item;
+            op.textContent = item;
+            select.appendChild(op);
+        });
+    }
+}
+async function registrar(){
+    const acepto =
+    document.getElementById("acepto").checked;
+    if(!acepto){
+        alert(
+        "Debe aceptar los términos y condiciones para crear la cuenta"
+        );
+        return;
+    }
+    const username =
+        document.getElementById("username").value;
+    const gmail =
+        document.getElementById("gmail").value;
+    const telefono =
+        document.getElementById("telefono").value;
+    const categoria =
+        document.getElementById("categoria").value;
+    const palabra =
+        document.getElementById("palabra").value;
+    const password =
+        document.getElementById("password").value;
+    if(
+        !username ||
+        !gmail ||
+        !telefono ||
+        !categoria ||
+        !palabra ||
+        !password
+    ){
+        alert(
+        "Complete todos los campos"
+        );
+        return;
+    }
+    try{
+        const res = await fetch("/registrar",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                username,
+                password,
+                email: gmail,
+                telefono,
+                categoria,
+                the_word: palabra
+            })
+        });
+        const data = await res.json();
+        alert(data.message);
+        if(res.ok){
+            window.location.href="/";
+        }
+    }catch(error){
+        alert(
+        "Error al registrar usuario"
+        );
+        console.error(error);
+    }
+}
+</script>
+</body>
+</html>
