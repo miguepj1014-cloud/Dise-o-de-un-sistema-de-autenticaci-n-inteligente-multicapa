@@ -44,7 +44,8 @@ body::after{
     right:-100px;
 }
 .container{
-    width:700px;
+    width:900px;
+    max-width:95%;
     padding:40px;
     background:rgba(255,255,255,.05);
     backdrop-filter:blur(20px);
@@ -131,57 +132,595 @@ button:hover{
     scale(1.03);
     box-shadow:0 10px 25px rgba(212,175,55,.4);
 }
+fieldset{
+    margin-top:25px;
+    padding:20px;
+    border:1px solid rgba(212,175,55,.25);
+    border-radius:15px;
+    background:rgba(255,255,255,.03);
+}
+
+legend{
+    color:#D4AF37;
+    font-weight:bold;
+    padding:0 10px;
+}
+
+details{
+    margin-top:20px;
+}
+
+summary{
+    color:#D4AF37;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.buttons{
+    flex-wrap:wrap;
+}
+
+.version-controls{
+    width:100%;
+}
+/* BOTONES PARAMETRO (SIN CAMBIAR ESTILO GLOBAL) */
+.param-controls{
+    display:flex;
+    gap:5px;
+    margin-top:8px;
+}
+.param-controls button{
+
+    width:38px;
+
+    height:38px;
+
+    padding:0;
+
+    border-radius:999px;
+
+    background:
+
+    rgba(255,255,255,.05);
+
+    border:1px solid rgba(212,175,55,.25);
+
+    color:#E6C86A;
+
+    font-size:14px;
+
+    transition:.25s;
+
+    backdrop-filter:blur(12px);
+
+}
+
+.param-controls button:hover{
+    transform:
+    translateY(-2px)
+    scale(1.08);
+    background:
+    rgba(212,175,55,.14);
+    box-shadow:
+    0 0 18px rgba(212,175,55,.18);
+}
+
+/* BOTONES VERSION REGISTRO */
+.version-controls{
+    margin-top:28px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.version-controls button{
+    min-width:155px;
+}
+.version-dots{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+}
+
+.version-dot{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    transition:.35s;
+    cursor:pointer;
+}
+.version-dot:hover{
+    transform:scale(1.4);
+}
+.version-dot.active{
+    width:28px;
+    border-radius:20px;
+    background:
+    linear-gradient(
+    90deg,
+    #D4AF37,
+    #F5D67A
+    );
+    box-shadow: 0 0 14px rgba(212,175,55,.35);
+}
+
+.version-dot.active{
+    background:#D4AF37;
+    transform:scale(1.3);
+    box-shadow:0 0 10px rgba(212,175,55,.6);
+}
 </style>
 </head>
 <body>
 <div class="container">
+
+    <!-- ================= PERFIL ================= -->
     <div class="profile">
-        <img src="https://i.pinimg.com/736x/06/4d/54/064d548a602fec00a9363089d9d846e4.jpg" alt="Perfil">
+
+        <img
+            src="https://i.pinimg.com/736x/06/4d/54/064d548a602fec00a9363089d9d846e4.jpg"
+            alt="Perfil">
+
         <h2 id="username"></h2>
+
         <p>Universidad Nacional de Chimborazo</p>
+
     </div>
+
+    <!-- ================= DATOS ================= -->
     <div class="grid">
+
+        <!-- USUARIO -->
         <div class="group">
-            <label>Usuario</label>
-            <input id="u">
+
+            <label for="u">👤 Usuario</label>
+
+            <div class="input-row">
+
+                <input
+                    id="u"
+                    placeholder="Ingrese su usuario">
+
+                <div class="param-controls">
+
+                    <button
+                        title="Anterior"
+                        onclick="anteriorParametro('username')">
+                        ◀
+                    </button>
+
+                    <button
+                        title="Siguiente"
+                        onclick="siguienteParametro('username')">
+                        ▶
+                    </button>
+
+                    <button
+                        title="Guardar"
+                        onclick="guardarParametro('username')">
+                        ✓
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- CONTRASEÑA -->
         <div class="group">
-            <label>Contraseña</label>
-            <input id="p" type="password">
+
+            <label for="p">🔒 Contraseña</label>
+
+            <div class="input-row">
+
+                <input
+                    id="p"
+                    type="password"
+                    placeholder="Ingrese su contraseña">
+
+                <div class="param-controls">
+
+                    <button
+                        title="Anterior"
+                        onclick="anteriorParametro('password')">
+                        ◀
+                    </button>
+
+                    <button
+                        title="Siguiente"
+                        onclick="siguienteParametro('password')">
+                        ▶
+                    </button>
+
+                    <button
+                        title="Guardar"
+                        onclick="guardarParametro('password')">
+                        ✓
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- EMAIL -->
         <div class="group">
-            <label>Email</label>
-            <input id="e">
+
+            <label for="e">✉ Email</label>
+
+            <div class="input-row">
+
+                <input
+                    id="e"
+                    placeholder="ejemplo@correo.com">
+
+                <div class="param-controls">
+
+                    <button
+                        title="Anterior"
+                        onclick="anteriorParametro('email')">
+                        ◀
+                    </button>
+
+                    <button
+                        title="Siguiente"
+                        onclick="siguienteParametro('email')">
+                        ▶
+                    </button>
+
+                    <button
+                        title="Guardar"
+                        onclick="guardarParametro('email')">
+                        ✓
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- TELÉFONO -->
         <div class="group">
-            <label>Teléfono</label>
-            <input id="t">
+
+            <label for="t">📞 Teléfono</label>
+
+            <div class="input-row">
+
+                <input
+                    id="t"
+                    placeholder="0999999999">
+
+                <div class="param-controls">
+
+                    <button
+                        title="Anterior"
+                        onclick="anteriorParametro('telefono')">
+                        ◀
+                    </button>
+
+                    <button
+                        title="Siguiente"
+                        onclick="siguienteParametro('telefono')">
+                        ▶
+                    </button>
+
+                    <button
+                        title="Guardar"
+                        onclick="guardarParametro('telefono')">
+                        ✓
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
-    </button>
-    <div class="buttons">
+
+    <!-- ================= GESTIÓN DE VERSIONES ================= -->
+
+    <div class="version-controls">
+
+        <fieldset style="width:100%;">
+
+            <legend>📂 Gestión de Versiones</legend>
+
+            <p style="text-align:center;color:#cfcfcf;margin-bottom:15px;">
+                Seleccione una versión o cree una nueva.
+            </p>
+
+            <div style="text-align:center;">
+
+                <strong style="color:#D4AF37;">
+                    Indicador de versiones
+                </strong>
+
+                <div
+                    id="versionDots"
+                    class="version-dots">
+                </div>
+
+            </div>
+
+            <div class="param-controls" style="justify-content:center;margin-top:15px;">
+
+                <button 
+                    title="Anterior versión"
+                    onclick="anteriorVersion()">
+                    ◀ Anterior
+                </button>
+
+                <button 
+                    title="Siguiente versión"
+                    onclick="siguienteVersion()">
+                    Siguiente ▶ 
+                </button>
+
+            </div>
+
+            <details style="margin-top:20px;">
+
+                <summary
+                    style="cursor:pointer;color:#D4AF37;font-weight:bold;">
+
+                    ⚙️ Acciones de versión
+
+                </summary>
+
+                <div class="buttons">
+
+                    <button onclick="crearNuevaVersion()">
+                        ➕ Nueva versión
+                    </button>
+
+                    <button onclick="eliminarVersion()">
+                        🗑 Eliminar versión
+                    </button>
+
+                </div>
+
+            </details>
+
+        </fieldset>
+
+<fieldset style="width:100%;">
+
+    <legend>🚀 Acciones del sistema</legend>
+
+    <div class="version-controls" style="width:100%;">
+
         <button onclick="guardarCambios()">
-            Guardar Cambios
+            💾 Guardar cambios
         </button>
-            <button onclick="window.location.href='/conoce_sistema'">
-        Conoce nuestro sistema
+
+        <button onclick="window.location.href='/conoce_sistema'">
+            🌐 Conoce nuestro sistema
+        </button>
+
     </div>
+
+</fieldset>
+
 </div>
 <script>
-async function cargarPerfil(){
+    let versionesRegistros = []; 
+    let versionActualIndex = 0;
+
+/*
+Estructura:
+versionesRegistros = [
+  {
+    username: { historial: [], index: 0 },
+    password: { historial: [], index: 0 },
+    email: { historial: [], index: 0 },
+    telefono: { historial: [], index: 0 }
+  }
+]
+*/
+
+// ======================= CARGA INICIAL =======================
+
+async function cargarPerfil() {
     const res = await fetch("/datos_perfil");
     const data = await res.json();
-    console.log("DATA:", data);
-    if(data.error){
+
+    if (data.error) {
         alert("Error cargando perfil: " + data.error);
         return;
     }
-    document.getElementById("username").textContent = data.username;
-    document.getElementById("u").value = data.username;
-    document.getElementById("p").value = data.password;
-    document.getElementById("e").value = data.email;
-    document.getElementById("t").value = data.telefono;
+
+    const versionInicial = crearEstructuraVersion({
+        username: data.username,
+        password: data.password,
+        email: data.email,
+        telefono: data.telefono
+    });
+
+    versionesRegistros.push(versionInicial);
+    versionActualIndex = 0;
+
+    aplicarVersionUI();
+    renderVersionDots();
 }
+
+/*
+BOTÓN RECOMENDADO:
+<button onclick="crearNuevaVersion()">Nueva versión</button>
+*/
+
+function crearEstructuraVersion(data) {
+    return {
+        username: { historial: [data.username], index: 0 },
+        password: { historial: [data.password], index: 0 },
+        email: { historial: [data.email], index: 0 },
+        telefono: { historial: [data.telefono], index: 0 }
+    };
+}
+
+// ======================= GUARDAR PARAMETRO =======================
+
+/*
+BOTÓN JUNTO A CADA INPUT:
+<button onclick="guardarParametro('username')">Guardar parámetro</button>
+*/
+
+function guardarParametro(parametro) {
+    const version = versionesRegistros[versionActualIndex];
+    const input = document.getElementById(getInputId(parametro)).value;
+
+    const historial = version[parametro].historial;
+    const index = version[parametro].index;
+
+    // Si cambia respecto al actual
+    if (historial[index] !== input) {
+        // elimina futuro si se editó en medio del historial
+        version[parametro].historial = historial.slice(0, index + 1);
+        version[parametro].historial.push(input);
+        version[parametro].index++;
+    }
+}
+
+// ======================= NAVEGACIÓN HISTORIAL PARAMETROS =======================
+
+/*
+BOTONES RECOMENDADOS:
+<button onclick="anteriorParametro('username')">⬅</button>
+<button onclick="siguienteParametro('username')">➡</button>
+*/
+
+function anteriorParametro(parametro) {
+    const version = versionesRegistros[versionActualIndex];
+    if (version[parametro].index > 0) {
+        version[parametro].index--;
+        aplicarVersionUI();
+    }
+}
+
+function siguienteParametro(parametro) {
+    const version = versionesRegistros[versionActualIndex];
+    if (version[parametro].index < version[parametro].historial.length - 1) {
+        version[parametro].index++;
+        aplicarVersionUI();
+    }
+}
+
+
+// ======================= NAVEGACIÓN VERSIONES =======================
+
+/*
+BOTONES:
+<button onclick="anteriorVersion()">⬅ Versión</button>
+<button onclick="siguienteVersion()">➡ Versión</button>
+*/
+
+function anteriorVersion() {
+    if (versionActualIndex > 0) {
+        versionActualIndex--;
+        aplicarVersionUI();
+        renderVersionDots();
+    }
+}
+
+function siguienteVersion() {
+    if (versionActualIndex < versionesRegistros.length - 1) {
+        versionActualIndex++;
+        aplicarVersionUI();
+        renderVersionDots();
+    }
+}
+
+// ======================= CREAR / ELIMINAR VERSIONES =======================
+
+/*
+BOTONES:
+<button onclick="crearNuevaVersion()">Nueva versión</button>
+<button onclick="eliminarVersion()">Eliminar versión</button>
+*/
+
+function crearNuevaVersion() {
+    const base = versionesRegistros[versionActualIndex];
+
+    const nueva = crearEstructuraVersion({
+        username: base.username.historial[base.username.index],
+        password: base.password.historial[base.password.index],
+        email: base.email.historial[base.email.index],
+        telefono: base.telefono.historial[base.telefono.index]
+    });
+
+    versionesRegistros.push(nueva);
+    versionActualIndex = versionesRegistros.length - 1;
+
+    aplicarVersionUI();
+    renderVersionDots();
+}
+
+function eliminarVersion() {
+    if (versionesRegistros.length <= 1) return; // evita borrar todas
+
+    versionesRegistros.splice(versionActualIndex, 1);
+
+    if (versionActualIndex >= versionesRegistros.length) {
+        versionActualIndex = versionesRegistros.length - 1;
+    }
+    renderVersionDots();
+
+    aplicarVersionUI();
+}
+
+// ======================= APLICAR UI =======================
+
+function aplicarVersionUI() {
+    const version = versionesRegistros[versionActualIndex];
+
+    setInput("u", version.username.historial[version.username.index]);
+    setInput("p", version.password.historial[version.password.index]);
+    setInput("e", version.email.historial[version.email.index]);
+    setInput("t", version.telefono.historial[version.telefono.index]);
+    renderVersionDots();
+}
+
+// ======================= HELPERS =======================
+
+function getInputId(parametro) {
+    switch (parametro) {
+        case "username": return "u";
+        case "password": return "p";
+        case "email": return "e";
+        case "telefono": return "t";
+    }
+}
+
+function setInput(id, value) {
+    document.getElementById(id).value = value;
+}
+function renderVersionDots(){
+    const container = document.getElementById("versionDots");
+    container.innerHTML = "";
+
+    versionesRegistros.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.classList.add("version-dot");
+
+        if(index === versionActualIndex){
+            dot.classList.add("active");
+        }
+
+        // click directo a versión
+        dot.onclick = () => {
+            versionActualIndex = index;
+            aplicarVersionUI();
+        };
+
+        container.appendChild(dot);
+    });
+}
+
 window.onload = cargarPerfil;
 </script>
 </body>
